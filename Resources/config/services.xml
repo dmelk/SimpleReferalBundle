@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="melk_simple_referal.listener.referer" class="Melk\SimpleReferalBundle\EventListener\RefererListener">
+            <argument type="service" id="router"/>
+            <argument type="service" id="melk_simple_referal.referal.service"/>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+        </service>
+
+        <service id="melk_simple_referal.listener.user_register" class="Melk\SimpleReferalBundle\EventListener\UserRegisteredListener">
+            <argument type="service" id="melk_simple_referal.referal.service"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="melk_simple_referal.referal.service" class="Melk\SimpleReferalBundle\Service\ReferalService">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%melk_simple_referal.code.class%</argument>
+            <argument>%melk_simple_referal.info.class%</argument>
+        </service>
+    </services>
+
+</container>

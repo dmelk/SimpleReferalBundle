@@ -1,0 +1,52 @@
+<?php
+
+namespace Melk\SimpleReferalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class ReferalInfo: save referal info
+ *
+ * @ORM\Entity()
+ *
+ * @package Melk\SimpleReferalBundle\Entity
+ */
+class ReferalInfo implements ReferalInfoInterface{
+
+    /**
+     * @var integer
+     */
+    protected $id;
+
+    /**
+     * @var ReferalCodeInterface
+     */
+    protected $refCode;
+
+    /**
+     * IP address
+     *
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $ip;
+
+    /**
+     * Referer
+     *
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $refer;
+
+    /**
+     * Request date
+     *
+     * @ORM\Column(type="date")
+     *
+     * @var \DateTime
+     */
+    protected $date;
+}

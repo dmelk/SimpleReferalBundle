@@ -1,0 +1,51 @@
+<?php
+
+namespace Melk\SimpleReferalBundle\Entity;
+
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User;
+
+/**
+ * Class ReferalCode: referal code entity for user
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="simple_referal_referal_code", uniqueConstraints={
+ *  @ORM\UniqueConstraint(name="code_idx", columns={"code"})
+ * })
+ *
+ * @package Melk\SimpleReferalBundle\Entity
+ */
+class ReferalCode {
+
+    /**
+     * Primary index
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * Link to the user
+     *
+     * @ORM\ManyToOne(targetEntity="FOS\UserBundle\Model\User", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     * @var User
+     */
+    private $user;
+
+    /**
+     * Unique referal code
+     *
+     * @ORM\Column(type="string", length=6)
+     *
+     * @var string
+     */
+    private $code;
+
+} 
